@@ -1,3 +1,4 @@
+import React from 'react';
 import AtlasNavFooter from './atlas';
 
 const NavFooter = (props) => {
