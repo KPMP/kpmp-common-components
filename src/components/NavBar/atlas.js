@@ -11,7 +11,7 @@ import {
 } from 'reactstrap';
 
 
-const NavBar = (props) => {
+const AtlasNavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -49,4 +49,4 @@ const NavBar = (props) => {
   );
 }
 
-export default NavBar;
+export default AtlasNavBar;

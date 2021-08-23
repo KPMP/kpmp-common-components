@@ -3,6 +3,7 @@ KPMP's common set of cross application react componenets
 
 
 ## Installation
+
 ```
 $ npm i kpmp-common-components --save
 ```
@@ -16,6 +17,11 @@ import { NavBar, NavFooter } from 'kpmp-common-components';
 
 Call the component inside render()
 ```
-<NavBar />
-<NavFooter />
+<NavBar app='atlas'/>
+<NavFooter app='atlas'/>
 ```
+
+
+## Currently Supported Apps
+
+atlas

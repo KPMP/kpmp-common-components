@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class NavFooter extends Component {
+class AtlasNavFooter extends Component {
   render() {
     return (
       <div id="footer" className="fixed-bottom px-1 py-1">
@@ -17,4 +17,5 @@ class NavFooter extends Component {
   }
 }
 
-export default NavFooter;
+export default AtlasNavFooter;
+
