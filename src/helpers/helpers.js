@@ -1,5 +1,5 @@
 // expects the window.location.pathname style of path
-export function isExpectedPath(pathname, expectedPath) {
+export default function isExpectedPath(pathname, expectedPath) {
     if(pathname === expectedPath) {
         return true
     } else if(expectedPath.replace(/\//g, '') == '') {
