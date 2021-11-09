@@ -25,3 +25,25 @@ Call the component inside render()
 ## Currently Supported Apps
 
 atlas
+
+
+
+## Developers
+
+Build after any changes
+
+`$ npm run build`
+
+Run pack to create a temp package for testing in your project
+
+`$ npm pack`
+
+Copy the tgz package to wherever you're test project is
+
+Delete your current package-lock.json file
+
+modify the package.json to include `'kpmp-common-components': file:./kpmp-common-components-x.y.z.tgz`
+
+Delete node modules and re-install
+
+`$ rm -rf node_modules && npm i`
