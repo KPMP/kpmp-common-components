@@ -9,7 +9,8 @@ import {
   NavLink,
   Container,
 } from 'reactstrap';
-
+import { faCircleQuestion } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AtlasNavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,9 +41,9 @@ const AtlasNavBar = (props) => {
             </NavItem>
           </Nav>
           <Nav>
-            <NavItem className="test px-1">
+            <NavItem className="nav-icon px-1">
               <NavLink rel="noreferrer" target='_blank' href="https://www.kpmp.org/help-docs/data">
-                <i className="far fa-question-circle"></i>
+                <FontAwesomeIcon className={"far fa-question-circle"} icon={faCircleQuestion} />
               </NavLink>
             </NavItem>
           </Nav>
