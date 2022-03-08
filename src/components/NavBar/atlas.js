@@ -9,7 +9,8 @@ import {
   NavLink,
   Container,
 } from 'reactstrap';
-
+import { faCircleQuestion } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AtlasNavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,9 +36,12 @@ const AtlasNavBar = (props) => {
             <NavItem className={`${window.location.pathname.replaceAll("/", "") === 'repository' ? 'active' : ''} px-1`}>
               <NavLink href="/repository"><span className="nav-text px-1">Repository</span></NavLink>
             </NavItem>
+            <NavItem className={`${window.location.pathname.replaceAll("/", "") === 'spatial-viewer' ? 'active' : ''} px-1`}>
+              <NavLink href="/spatial-viewer"><span className="nav-text px-1">Spatial Viewer</span></NavLink>
+            </NavItem>
           </Nav>
           <Nav>
-            <NavItem className="test px-1">
+            <NavItem className="nav-icon px-1">
               <NavLink rel="noreferrer" target='_blank' href="https://www.kpmp.org/help-docs/data">
                 Help
               </NavLink>
