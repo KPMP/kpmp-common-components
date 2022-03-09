@@ -47,3 +47,9 @@ modify the package.json to include `'kpmp-common-components': file:./kpmp-common
 Delete node modules and re-install
 
 `$ rm -rf node_modules && npm i`
+
+## To publish changes to NPM
+`$ npm publish`
+
+If you are not logged in, you may need to login first
+`$ npm login`
