@@ -42,7 +42,7 @@ const AtlasNavBar = (props) => {
           </Nav>
           <Nav>
             <NavItem className="nav-icon px-1">
-              <NavLink rel="noreferrer" target='_blank' href="https://www.kpmp.org/help-docs/data">
+              <NavLink rel="noreferrer" target='_blank' href="https://kpmp.org/help">
                 Help
               </NavLink>
             </NavItem>
