@@ -9,14 +9,12 @@ import {
   NavLink,
   Container,
 } from 'reactstrap';
-import { faCircleQuestion } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { default as ReactGA4 } from 'react-ga4';
 
 const AtlasNavBar = (props) => {
+  ReactGA4.initialize('G-64W6E37TQB', { testMode: process.env.NODE_ENV === 'test' });
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
-
   return (
     <Container>
       <Navbar id="navbar" className="fixed-top px-1 py-1 mb-3 container-fluid" expand="md" light>
@@ -42,7 +40,13 @@ const AtlasNavBar = (props) => {
           </Nav>
           <Nav>
             <NavItem className="nav-icon px-1">
-              <NavLink rel="noreferrer" target='_blank' href="https://kpmp.org/help">
+              <NavLink onClick={() =>{
+                ReactGA4.event({
+                  category: 'Explorer',
+                  action: 'Download',
+                  label: getCurrentPage()})
+                }}
+                rel="noreferrer" target='_blank' href="https://kpmp.org/help">
                 Help
               </NavLink>
             </NavItem>
