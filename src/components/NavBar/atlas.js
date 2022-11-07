@@ -42,9 +42,9 @@ const AtlasNavBar = (props) => {
             <NavItem className="nav-icon px-1">
               <NavLink onClick={() =>{
                 ReactGA4.event({
-                  category: 'Explorer',
-                  action: 'Download',
-                  label: getCurrentPage()})
+                  category: getCurrentPage(),
+                  action: 'Navigation',
+                  label: 'Help'})
                 }}
                 rel="noreferrer" target='_blank' href="https://kpmp.org/help">
                 Help
