@@ -11,6 +11,19 @@ import {
 } from 'reactstrap';
 import { default as ReactGA4 } from 'react-ga4';
 
+const getCurrentPage = () => {
+  switch(window.location.pathname.replaceAll("/", "")) {
+    case "explorer":
+      return "Explorer"
+    case "repository":
+      return "Repository"
+    case "spatial-viewer":
+      return "Spatial Viewer"
+    default:
+      return "KPMP Atlas"
+  }
+}
+
 const AtlasNavBar = (props) => {
   ReactGA4.initialize('G-64W6E37TQB', { testMode: process.env.NODE_ENV === 'test' });
   const [isOpen, setIsOpen] = useState(false);
