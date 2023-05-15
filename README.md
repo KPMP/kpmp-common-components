@@ -32,6 +32,7 @@ atlas
 
 Build after any changes
 
+`$ npm install`
 `$ npm run build`
 
 Run pack to create a temp package for testing in your project
@@ -42,7 +43,7 @@ Copy the tgz package to wherever you're test project is
 
 Delete your current package-lock.json file
 
-modify the package.json to include `'kpmp-common-components': file:./kpmp-common-components-x.y.z.tgz`
+modify the package.json to include `'kpmp-common-components': 'file:./kpmp-common-components-x.y.z.tgz'`
 
 Delete node modules and re-install
 
