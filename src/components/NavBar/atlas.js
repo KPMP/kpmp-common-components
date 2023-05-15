@@ -17,6 +17,8 @@ const getCurrentPage = () => {
       return "Explorer"
     case "repository":
       return "Repository"
+    case "repository2":
+      return "Repository"
     case "spatial-viewer":
       return "Spatial Viewer"
     default:
