@@ -12,12 +12,10 @@ import {
 import { default as ReactGA4 } from 'react-ga4';
 
 const getCurrentPage = () => {
-  switch(window.location.pathname.replaceAll("/", "")) {
+  switch(window.location.pathname.split("/")[0]) {
     case "explorer":
       return "Explorer"
     case "repository":
-      return "Repository"
-    case "repository2":
       return "Repository"
     case "spatial-viewer":
       return "Spatial Viewer"
