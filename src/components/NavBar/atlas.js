@@ -30,7 +30,8 @@ const AtlasNavBar = (props) => {
   ReactGA4.initialize('G-64W6E37TQB', { testMode: process.env.NODE_ENV === 'test' });
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-  let currentPage = window.location.pathname.substring(1).split("/")[0]
+  //let currentPage = window.location.pathname.substring(1).split("/")[0]
+  let currentPage = props.history.substring(1).split("/")[0]
   return (
     <Container>
       <Navbar id="navbar" className="fixed-top px-1 py-1 mb-3 container-fluid" expand="md" light>
