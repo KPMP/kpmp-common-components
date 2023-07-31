@@ -12,7 +12,8 @@ import {
 import { default as ReactGA4 } from 'react-ga4';
 
 const getCurrentPage = () => {
-  switch(window.location.pathname.split("/")[0]) {
+  let pageArr = window.location.pathname.substring(1).split("/")
+  switch(pageArr[0]) {
     case "explorer":
       return "Explorer"
     case "repository":
