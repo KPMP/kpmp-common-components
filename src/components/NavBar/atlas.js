@@ -26,8 +26,6 @@ const getPageForGA = (currentPage) => {
   }
 }
 
-
-
 const AtlasNavBar = (props) => {
   ReactGA4.initialize('G-64W6E37TQB', { testMode: process.env.NODE_ENV === 'test' });
   const [isOpen, setIsOpen] = useState(false);
@@ -35,11 +33,11 @@ const AtlasNavBar = (props) => {
   //let currentPage = window.location.pathname.substring(1).split("/")[0]
   //let history = useHistory();
   //let currentPage = history.location.pathname.substring(1).split("/")[0]
-  const location = useLocation();
-  useEffect(() => {
-    console.log(location.pathname);
-  }, [location]);
-  let currentPage = location.pathname.substring(1).split("/")[0]
+  // let location = useLocation();
+  // useEffect(() => {
+  //   console.log(location.pathname);
+  // }, [location]);
+  let currentPage = window.location.pathname.substring(1).split("/")[0]
   return (
     <Container>
       <Navbar id="navbar" className="fixed-top px-1 py-1 mb-3 container-fluid" expand="md" light>
@@ -54,7 +52,7 @@ const AtlasNavBar = (props) => {
               <NavLink href="/"><span className="nav-text px-1">Dashboard (Home)</span></NavLink>
             </NavItem>
             <NavItem className={`${currentPage === 'explorer' ? 'active' : ''} px-1`}>
-              <NavLink href="/explorer"><span className="nav-text px-1">Explorer {location.pathname}</span></NavLink>
+              <NavLink href="/explorer"><span className="nav-text px-1">Explorer</span></NavLink>
             </NavItem>
             <NavItem className={`${currentPage === 'repository' ? 'active' : ''} px-1`}>
               <NavLink href="/repository"><span className="nav-text px-1">Repository</span></NavLink>
