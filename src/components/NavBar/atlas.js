@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
+import { useHistory, useLocation } from "react-router-dom";
+
 import {
   Collapse,
   Navbar,
@@ -11,13 +13,11 @@ import {
 } from 'reactstrap';
 import { default as ReactGA4 } from 'react-ga4';
 
-const getCurrentPage = () => {
-  switch(window.location.pathname.replaceAll("/", "")) {
+const getPageForGA = (currentPage) => {
+  switch(currentPage) {
     case "explorer":
       return "Explorer"
     case "repository":
-      return "Repository"
-    case "repository2":
       return "Repository"
     case "spatial-viewer":
       return "Spatial Viewer"
@@ -30,6 +30,7 @@ const AtlasNavBar = (props) => {
   ReactGA4.initialize('G-64W6E37TQB', { testMode: process.env.NODE_ENV === 'test' });
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+  let currentPage = window.location.pathname.substring(1).split("/")[0]
   return (
     <Container>
       <Navbar id="navbar" className="fixed-top px-1 py-1 mb-3 container-fluid" expand="md" light>
@@ -43,13 +44,13 @@ const AtlasNavBar = (props) => {
             <NavItem className={`${window.location.pathname === '/' ? 'active' : ''} px-1`}>
               <NavLink href="/"><span className="nav-text px-1">Dashboard (Home)</span></NavLink>
             </NavItem>
-            <NavItem className={`${window.location.pathname.replaceAll("/", "") === 'explorer' ? 'active' : ''} px-1`}>
+            <NavItem className={`${currentPage === 'explorer' ? 'active' : ''} px-1`}>
               <NavLink href="/explorer"><span className="nav-text px-1">Explorer</span></NavLink>
             </NavItem>
-            <NavItem className={`${window.location.pathname.replaceAll("/", "") === 'repository' ? 'active' : ''} px-1`}>
+            <NavItem className={`${currentPage === 'repository' ? 'active' : ''} px-1`}>
               <NavLink href="/repository"><span className="nav-text px-1">Repository</span></NavLink>
             </NavItem>
-            <NavItem className={`${window.location.pathname.replaceAll("/", "") === 'spatial-viewer' ? 'active' : ''} px-1`}>
+            <NavItem className={`${currentPage === 'spatial-viewer' ? 'active' : ''} px-1`}>
               <NavLink href="/spatial-viewer"><span className="nav-text px-1">Spatial Viewer</span></NavLink>
             </NavItem>
           </Nav>
@@ -57,7 +58,7 @@ const AtlasNavBar = (props) => {
             <NavItem className="nav-icon px-1">
               <NavLink onClick={() =>{
                 ReactGA4.event({
-                  category: getCurrentPage(),
+                  category: getPageForGA(currentPage),
                   action: 'Navigation',
                   label: 'Help'})
                 }}
