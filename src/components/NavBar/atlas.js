@@ -30,13 +30,6 @@ const AtlasNavBar = (props) => {
   ReactGA4.initialize('G-64W6E37TQB', { testMode: process.env.NODE_ENV === 'test' });
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-  //let currentPage = window.location.pathname.substring(1).split("/")[0]
-  //let history = useHistory();
-  //let currentPage = history.location.pathname.substring(1).split("/")[0]
-  // let location = useLocation();
-  // useEffect(() => {
-  //   console.log(location.pathname);
-  // }, [location]);
   let currentPage = window.location.pathname.substring(1).split("/")[0]
   return (
     <Container>
