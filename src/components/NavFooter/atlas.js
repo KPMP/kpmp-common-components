@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 class AtlasNavFooter extends Component {
   render() {
     return (
-      <div id="footer" className="fixed-bottom px-5 py-3 text-light mx-auto">
-        <div className="px-5 py-2 small lh-sm">
+      <div id="footer" className="px-3 py-3 text-light mx-auto">
+        <div className="small lh-sm">
           The Kidney Precision Medicine Project (KPMP) is supported by grant U24 DK114886 from the <a
             className='text-light'
             href="https://www.niddk.nih.gov"
