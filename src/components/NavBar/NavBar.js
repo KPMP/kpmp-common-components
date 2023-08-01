@@ -6,7 +6,7 @@ const NavBar = (props) => {
     <div>
       {
         props.app == 'atlas' &&
-        <AtlasNavBar />
+        <AtlasNavBar history={props.history}/>
       }
     </div>
   );

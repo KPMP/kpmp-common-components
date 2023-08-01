@@ -31,7 +31,7 @@ const AtlasNavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   //let currentPage = window.location.pathname.substring(1).split("/")[0]
-  let currentPage = props.history.substring(1).split("/")[0]
+  let currentPage = props.history.location.substring(1).split("/")[0]
   return (
     <Container>
       <Navbar id="navbar" className="fixed-top px-1 py-1 mb-3 container-fluid" expand="md" light>
