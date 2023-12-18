@@ -9,6 +9,10 @@ import {
   NavItem,
   NavLink,
   Container,
+  Dropdown,
+  DropdownToggle,
+  DropdownItem,
+  DropdownMenu
 } from 'reactstrap';
 import { default as ReactGA4 } from 'react-ga4';
 
@@ -26,6 +30,18 @@ const getPageForGA = (currentPage) => {
 }
 
 const AtlasNavBar = (props) => {
+  const [dropdownOpen, setDropdownVisible] = useState(false);
+
+  const handleMouseEnter = () => {
+    setDropdownVisible(true);
+  }
+
+  const handleMouseLeave = () => {
+    setDropdownVisible(false);
+  }
+
+  const dropdownToggle = () => setDropdownVisible((prevState) => !prevState);
+
   ReactGA4.initialize('G-64W6E37TQB', { testMode: process.env.NODE_ENV === 'test' });
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -54,16 +70,87 @@ const AtlasNavBar = (props) => {
             </NavItem>
           </Nav>
           <Nav>
-            <NavItem className="nav-icon px-1">
-              <NavLink onClick={() =>{
-                ReactGA4.event({
-                  category: getPageForGA(currentPage),
-                  action: 'Navigation',
-                  label: 'Help'})
-                }}
-                rel="noreferrer" target='_blank' href="https://kpmp.org/help">
-                Help
-              </NavLink>
+            <NavItem className="nav-icon px-1 help-menu">
+              <Dropdown isOpen={dropdownOpen} toggle={dropdownToggle} direction='down' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                <DropdownToggle caret>Help</DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem>
+                    <NavLink 
+                    onClick={() =>{
+                      ReactGA4.event({
+                        category: getPageForGA(currentPage),
+                        action: 'Navigation',
+                        label: 'Help'})
+                      }}
+                      rel="noreferrer" target='_blank' href='https://www.kpmp.org/help-docs/software'><span className='nav-text px-1'>About the Atlas</span></NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink 
+                    onClick={() =>{
+                      ReactGA4.event({
+                        category: getPageForGA(currentPage),
+                        action: 'Navigation',
+                        label: 'Help'})
+                      }}
+                      rel="noreferrer" target='_blank' href='https://www.kpmp.org/help-docs/software?tabname=atlasreleasenotes'><span className='nav-text px-1'>Release Notes</span></NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink 
+                    onClick={() =>{
+                      ReactGA4.event({
+                        category: getPageForGA(currentPage),
+                        action: 'Navigation',
+                        label: 'Help'})
+                      }}
+                      rel="noreferrer" target='_blank'
+                      href='https://www.kpmp.org/help-docs/software?tabname=atlasdatachangelog'><span className='nav-text px-1'>Data Change Log</span></NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink 
+                    onClick={() =>{
+                      ReactGA4.event({
+                        category: getPageForGA(currentPage),
+                        action: 'Navigation',
+                        label: 'Help'})
+                      }}
+                      rel="noreferrer" target='_blank'
+                      href='https://www.kpmp.org/help-docs/software?tabname=atlasknownissues'><span className='nav-text px-1'>Known Issues</span></NavLink>
+                  </DropdownItem>
+                  <DropdownItem disabled>FAQs</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    <NavLink 
+                    onClick={() =>{
+                      ReactGA4.event({
+                        category: getPageForGA(currentPage),
+                        action: 'Navigation',
+                        label: 'Help'})
+                      }}
+                      rel="noreferrer" target='_blank' href='https://www.kpmp.org/help-docs/study-overview'><span className='nav-text px-1'>Study Overview</span></NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink 
+                    onClick={() =>{
+                      ReactGA4.event({
+                        category: getPageForGA(currentPage),
+                        action: 'Navigation',
+                        label: 'Help'})
+                      }}
+                      rel="noreferrer" target='_blank' href='https://www.kpmp.org/help-docs/technologies'><span className='nav-text px-1'>Technologies</span></NavLink>
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    <NavLink 
+                    onClick={() =>{
+                      ReactGA4.event({
+                        category: getPageForGA(currentPage),
+                        action: 'Navigation',
+                        label: 'Help'})
+                      }}
+                      rel="noreferrer" target='_blank' href='https://app.smartsheet.com/b/form/7e25c95073a044cf95cf5f13566deaaf'><span className='nav-text px-1'>Give us your feedback</span></NavLink>
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
             </NavItem>
           </Nav>
         </Collapse>
