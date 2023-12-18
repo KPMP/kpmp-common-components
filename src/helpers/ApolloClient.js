@@ -5,23 +5,9 @@ import { sendMessageToBackend } from './helpers';
 
 const axios = require('axios').default;
 
-
-const isDevelopment = () => {
-    return process.env.NODE_ENV === "development";
-};
-
-const getBaseURL = () => {
-    if (isDevelopment()) {
-        return packageJson.proxy;
-    }
-    return '';
-};
-
 const httpLink = new HttpLink({
-    uri: getBaseURL() + '/graphql'
+    uri: "https://qa-atlas.kpmp.org" + "/graphql"
 });
-console.log(httpLink);
-
 
 const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
     if (graphQLErrors)
