@@ -147,7 +147,6 @@ class AtlasNavBar extends Component {
                       rel="noreferrer" target='_blank'
                       href='https://www.kpmp.org/help-docs/software?tabname=atlasknownissues'><span className='nav-text px-1'>Known Issues</span></NavLink>
                   </DropdownItem>
-                  <DropdownItem disabled>FAQs</DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
                     <NavLink 

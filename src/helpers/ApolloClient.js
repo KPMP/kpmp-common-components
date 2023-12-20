@@ -1,6 +1,5 @@
 import { ApolloClient, gql, InMemoryCache, HttpLink, from } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-import packageJson from '../../package.json';
 import { sendMessageToBackend } from './helpers';
 
 const axios = require('axios').default;
