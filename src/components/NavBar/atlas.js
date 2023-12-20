@@ -42,7 +42,7 @@ class AtlasNavBar extends Component {
       visible: [],
       dropdownOpen: false,
       currentPage: window.location.pathname.substring(1).split("/")[0],
-      dismissed: []
+      dismissedAlerts: window.sessionStorage.getItem("dismissedAlerts")
     }
   }
 
@@ -58,9 +58,9 @@ class AtlasNavBar extends Component {
     })
   }
 
-  checkMessageState(id){
-    if (this.state.dismissed.includes(id)) {
-      // don't show it
+  shouldShow(id){
+    let dismissedAlerts = window.sessionStorage.getItem("dismissedAlerts");
+    if (dismissedAlerts.includes(id)) {
       return false
     }else{
       return true
@@ -68,9 +68,10 @@ class AtlasNavBar extends Component {
   }
 
   onDismiss = (id) => {
-    console.log("index number: " + id);
-    this.setState({visible: [...this.state.visible.slice(0,id), false, ...this.state.visible.slice(id+1)], dismissed: [...this.state.dismissed, id]})
-    console.log(this.state.dismissed);
+    this.setState({visible: [...this.state.visible.slice(0,id), false, ...this.state.visible.slice(id+1)]})
+    let dismissedAlerts = window.sessionStorage.getItem("dismissedAlerts");
+    dismiseedAlerts.push(id);
+    window.sessionStorage.setItem("dismissedAlerts", dismissedAlerts);
   }
 
   handleMouseEnter = () => {
@@ -201,7 +202,7 @@ class AtlasNavBar extends Component {
         {
           this.state.alerts.length > 0 &&
           this.state.alerts.map((item, i) => {
-              if (this.state.currentPage === item.application || item.application === "all" && this.checkMessageState(item.id) == true) {
+              if (this.state.currentPage === item.application || item.application === "all" && this.shouldShow(item.id)) {
                 return <Alert color='primary' style={{width: "98%", margin: "0 auto", marginBottom: "0.5rem"}} isOpen={this.state.visible[i]} toggle={() => this.onDismiss(item.id)}><div dangerouslySetInnerHTML={{__html: item.message}}></div></Alert>
               }
           })
