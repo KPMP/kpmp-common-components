@@ -39,10 +39,9 @@ class AtlasNavBar extends Component {
     this.state = {
       isOpen: false,
       alerts: [],
-      visible: [],
+      visible:[],
       dropdownOpen: false,
       currentPage: window.location.pathname.substring(1).split("/")[0],
-      dismissedAlerts: window.sessionStorage.getItem("dismissedAlerts")
     }
   }
 
@@ -50,28 +49,31 @@ class AtlasNavBar extends Component {
     fetchAtlasMessages().then((result) => {
       if(result){
         let vis = []
-        result.forEach(() => {
-          vis.push(true);
+        result.forEach((item) => {
+          vis.push(item.id);
         })
         this.setState({alerts: result, visible: vis})
       }
     })
   }
 
-  shouldShow(id){
-    let dismissedAlerts = window.sessionStorage.getItem("dismissedAlerts");
-    if (dismissedAlerts.includes(id)) {
+  shouldShow(item){
+    let dismissedAlerts = Object.keys(window.sessionStorage);
+    if (dismissedAlerts && dismissedAlerts.includes(item.id.toString())) {
       return false
     }else{
       return true
     }
   }
 
-  onDismiss = (id) => {
-    this.setState({visible: [...this.state.visible.slice(0,id), false, ...this.state.visible.slice(id+1)]})
-    let dismissedAlerts = window.sessionStorage.getItem("dismissedAlerts");
-    dismiseedAlerts.push(id);
-    window.sessionStorage.setItem("dismissedAlerts", dismissedAlerts);
+  onDismiss = (item) => {
+    let visibleList = this.state.visible;
+    let index = visibleList.indexOf(item.id);
+    if (index > 0){
+      visibleList = visibleList.splice(index, 1);
+    }
+    this.setState({visible: visibleList});
+    window.sessionStorage.setItem(item.id, '');
   }
 
   handleMouseEnter = () => {
@@ -202,8 +204,8 @@ class AtlasNavBar extends Component {
         {
           this.state.alerts.length > 0 &&
           this.state.alerts.map((item, i) => {
-              if (this.state.currentPage === item.application || item.application === "all" && this.shouldShow(item.id)) {
-                return <Alert color='primary' style={{width: "98%", margin: "0 auto", marginBottom: "0.5rem"}} isOpen={this.state.visible[i]} toggle={() => this.onDismiss(item.id)}><div dangerouslySetInnerHTML={{__html: item.message}}></div></Alert>
+              if ((this.state.currentPage === item.application || item.application === "all") && this.shouldShow(item)) {
+                return <Alert color='primary' style={{width: "98%", margin: "0 auto", marginBottom: "0.5rem"}} isOpen={this.state.visible.includes(item.id)} toggle={() => this.onDismiss(item)}><div dangerouslySetInnerHTML={{__html: item.message}}></div></Alert>
               }
           })
         }
