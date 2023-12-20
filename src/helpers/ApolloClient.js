@@ -52,10 +52,10 @@ export const fetchAtlasMessages = async () => {
         }`;
     const response = await apolloClient.query({
         query: query,
-        fetchPolicy: 'cache-first'
+        fetchPolicy: 'network-only'
     });
     if (response.data && response.data.getAtlasMessages) {
-        return JSON.stringify(response.data.getAtlasMessages);
+        return response.data.getAtlasMessages;
     }else {
         sendMessageToBackend("Could not retrieve Atlas messages: " + response.error);
     }
