@@ -41,7 +41,8 @@ class AtlasNavBar extends Component {
       alerts: [],
       visible: [],
       dropdownOpen: false,
-      currentPage: window.location.pathname.substring(1).split("/")[0]
+      currentPage: window.location.pathname.substring(1).split("/")[0],
+      dismissed: []
     }
   }
 
@@ -57,8 +58,19 @@ class AtlasNavBar extends Component {
     })
   }
 
-  onDismiss = (index) => {
-    this.setState({visible: [...this.state.visible.slice(0,index), false, ...this.state.visible.slice(index+1)]})
+  checkMessageState(id){
+    if (this.state.dismissed.includes(id)) {
+      // don't show it
+      return false
+    }else{
+      return true
+    }
+  }
+
+  onDismiss = (id) => {
+    console.log("index number: " + id);
+    this.setState({visible: [...this.state.visible.slice(0,id), false, ...this.state.visible.slice(id+1)], dismissed: [...this.state.dismissed, id]})
+    console.log(this.state.dismissed);
   }
 
   handleMouseEnter = () => {
@@ -189,8 +201,8 @@ class AtlasNavBar extends Component {
         {
           this.state.alerts.length > 0 &&
           this.state.alerts.map((item, i) => {
-              if (this.state.currentPage === item.application || item.application === "all") {
-                return <Alert color='primary' style={{width: "98%", margin: "0 auto", marginBottom: "0.5rem"}} isOpen={this.state.visible[i]} toggle={() => this.onDismiss(i)}><div dangerouslySetInnerHTML={{__html: item.message}}></div></Alert>
+              if (this.state.currentPage === item.application || item.application === "all" && this.checkMessageState(item.id) == true) {
+                return <Alert color='primary' style={{width: "98%", margin: "0 auto", marginBottom: "0.5rem"}} isOpen={this.state.visible[i]} toggle={() => this.onDismiss(item.id)}><div dangerouslySetInnerHTML={{__html: item.message}}></div></Alert>
               }
           })
         }
