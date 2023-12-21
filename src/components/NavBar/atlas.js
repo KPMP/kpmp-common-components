@@ -210,7 +210,6 @@ class AtlasNavBar extends Component {
             })
           }
         </div>
-      </div>
     );
   }
 }
