@@ -20,7 +20,7 @@ import { default as ReactGA4 } from 'react-ga4';
 import { fetchAtlasMessages } from '../../helpers/ApolloClient';
 
 const getPageForGA = (currentPage) => {
-  switch(currentPage) {
+  switch (currentPage) {
     case "explorer":
       return "Explorer"
     case "repository":
@@ -47,12 +47,12 @@ class AtlasNavBar extends Component {
 
   componentDidMount() {
     fetchAtlasMessages().then((result) => {
-      if(result){
+      if (result) {
         let vis = []
         result.forEach((item) => {
           vis.push(item.id);
         })
-        this.setState({alerts: result, visible: vis})
+        this.setState({ alerts: result, visible: vis })
       }
     })
   }
@@ -77,21 +77,21 @@ class AtlasNavBar extends Component {
   }
 
   handleMouseEnter = () => {
-    this.setState({dropdownOpen: true});
+    this.setState({ dropdownOpen: true });
   }
 
   handleMouseLeave = () => {
-    this.setState({dropdownOpen: false});
+    this.setState({ dropdownOpen: false });
   }
 
   dropdownToggle = () => {
-    this.setState({dropdownOpen: !this.state.dropdownOpen});
+    this.setState({ dropdownOpen: !this.state.dropdownOpen });
   }
 
   toggle = () => {
-    this.setState({isOpen: !this.state.isOpen});
+    this.setState({ isOpen: !this.state.isOpen });
   }
-  render () {
+  render() {
     return (
       <div>
         <Container>
@@ -207,8 +207,9 @@ class AtlasNavBar extends Component {
               if ((this.state.currentPage === item.application || item.application === "all") && this.shouldShow(item)) {
                 return <Alert color='primary' style={{width: "98%", margin: "0 auto", marginBottom: "0.5rem"}} isOpen={this.state.visible.includes(item.id)} toggle={() => this.onDismiss(item)}><div dangerouslySetInnerHTML={{__html: item.message}}></div></Alert>
               }
-          })
-        }
+            })
+          }
+        </div>
       </div>
     );
   }

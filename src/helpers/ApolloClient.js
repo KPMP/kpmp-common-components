@@ -5,7 +5,7 @@ import { sendMessageToBackend } from './helpers';
 const axios = require('axios').default;
 
 const httpLink = new HttpLink({
-    uri: "https://qa-atlas.kpmp.org" + "/graphql"
+    uri: process.env.REACT_APP_API_HOST + "/graphql"
 });
 
 const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
