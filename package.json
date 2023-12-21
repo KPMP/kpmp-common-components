@@ -1,6 +1,6 @@
 {
   "name": "kpmp-common-components",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "description": "KPMP's common set of cross application react componenets",
   "main": "./build/index.js",
   "scripts": {

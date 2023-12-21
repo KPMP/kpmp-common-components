@@ -39,7 +39,7 @@ class AtlasNavBar extends Component {
     this.state = {
       isOpen: false,
       alerts: [],
-      visible:[],
+      dismissed: [],
       dropdownOpen: false,
       currentPage: window.location.pathname.substring(1).split("/")[0],
     }
@@ -47,15 +47,9 @@ class AtlasNavBar extends Component {
 
   componentDidMount() {
     fetchAtlasMessages().then((result) => {
-      if (result) {
-        let vis = []
-        result.forEach((item) => {
-          vis.push(item.id);
-        })
-        this.setState({ alerts: result, visible: vis })
-      }
-    })
-  }
+        this.setState({ alerts: result})
+      })
+    }
 
   shouldShow(item){
     let dismissedAlerts = Object.keys(window.sessionStorage);
@@ -67,12 +61,8 @@ class AtlasNavBar extends Component {
   }
 
   onDismiss = (item) => {
-    let visibleList = this.state.visible;
-    let index = visibleList.indexOf(item.id);
-    if (index > 0){
-      visibleList = visibleList.splice(index, 1);
-    }
-    this.setState({visible: visibleList});
+    //we're setting this state so that the component updates. We get the dismissed items from session storage
+    this.setState({dismissed: item.id})
     window.sessionStorage.setItem(item.id, '');
   }
 
@@ -201,14 +191,23 @@ class AtlasNavBar extends Component {
         </Collapse>
       </Navbar>
     </Container>
+    <div className='alerts'
+          style={{
+            position: "absolute",
+            width: "100%",
+            zIndex: "1021",
+            backgroundColor: "rgb(250 251 252)",
+            boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1)"
+          }}>
         {
           this.state.alerts.length > 0 &&
           this.state.alerts.map((item, i) => {
               if ((this.state.currentPage === item.application || item.application === "all") && this.shouldShow(item)) {
-                return <Alert color='primary' style={{width: "98%", margin: "0 auto", marginBottom: "0.5rem"}} isOpen={this.state.visible.includes(item.id)} toggle={() => this.onDismiss(item)}><div dangerouslySetInnerHTML={{__html: item.message}}></div></Alert>
+                return <Alert color='primary' style={{width: "98%", margin: "0 auto", marginBottom: "0.5rem"}} toggle={() => this.onDismiss(item)}><div dangerouslySetInnerHTML={{__html: item.message}}></div></Alert>
               }
             })
           }
+          </div>
         </div>
     );
   }
