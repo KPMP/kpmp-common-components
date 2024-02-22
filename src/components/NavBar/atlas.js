@@ -52,7 +52,7 @@ class AtlasNavBar extends Component {
     }
 
   shouldShow(item){
-    let dismissedAlerts = Object.keys(window.sessionStorage);
+    let dismissedAlerts = Object.keys(window.localStorage);
     if (dismissedAlerts && dismissedAlerts.includes(item.id.toString())) {
       return false
     }else{
@@ -63,7 +63,7 @@ class AtlasNavBar extends Component {
   onDismiss = (item) => {
     //we're setting this state so that the component updates. We get the dismissed items from session storage
     this.setState({dismissed: item.id})
-    window.sessionStorage.setItem(item.id, '');
+    window.localStorage.setItem(item.id, '');
   }
 
   handleMouseEnter = () => {
@@ -199,6 +199,7 @@ class AtlasNavBar extends Component {
             backgroundColor: "rgb(250 251 252)",
             boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1)"
           }}>
+            {console.log(this.state.alerts)}
         {
           this.state.alerts.length > 0 &&
           this.state.alerts.map((item, i) => {
