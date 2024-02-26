@@ -2,8 +2,6 @@ import { ApolloClient, gql, InMemoryCache, HttpLink, from } from "@apollo/client
 import { onError } from "@apollo/client/link/error";
 import { sendMessageToBackend } from './helpers';
 
-const axios = require('axios').default;
-
 const httpLink = new HttpLink({
     uri: process.env.REACT_APP_API_HOST + "/graphql"
 });
