@@ -128,7 +128,7 @@ class AtlasNavBar extends Component {
                         action: 'Navigation',
                         label: 'Help'})
                       }}
-                      rel="noreferrer" target='_blank' href='https://www.kpmp.org/help-docs/software?tabname=atlasreleasenotes'><span className='nav-text px-1'>Release Notes</span></NavLink>
+                      rel="noreferrer" target='_blank' href='https://www.kpmp.org/help-docs/study-overview?tabname=citingkpmpdata'><span className='nav-text px-1'>Citing KPMP Data</span></NavLink>
                   </DropdownItem>
                   <DropdownItem>
                     <NavLink 
@@ -151,6 +151,16 @@ class AtlasNavBar extends Component {
                       }}
                       rel="noreferrer" target='_blank'
                       href='https://www.kpmp.org/help-docs/software?tabname=atlasknownissues'><span className='nav-text px-1'>Known Issues</span></NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink 
+                    onClick={() =>{
+                      ReactGA4.event({
+                        category: getPageForGA(this.state.currentPage),
+                        action: 'Navigation',
+                        label: 'Help'})
+                      }}
+                      rel="noreferrer" target='_blank' href='https://www.kpmp.org/help-docs/software?tabname=atlasreleasenotes'><span className='nav-text px-1'>Release Notes</span></NavLink>
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
