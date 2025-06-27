@@ -203,7 +203,17 @@ class AtlasNavBar extends Component {
                         action: 'Navigation',
                         label: 'Help'})
                       }}
-                      rel="noreferrer" target='_blank' href='https://app.smartsheet.com/b/form/7e25c95073a044cf95cf5f13566deaaf'><span className='nav-text px-1'>Give us your feedback</span></NavLink>
+                      rel="noreferrer" target='_blank' href='https://app.smartsheet.com/b/form/7e25c95073a044cf95cf5f13566deaaf'><span className='nav-text px-1'>Contact us</span></NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink 
+                    onClick={() =>{
+                      ReactGA4.event({
+                        category: getPageForGA(this.state.currentPage),
+                        action: 'Navigation',
+                        label: 'Help'})
+                      }}
+                      rel="noreferrer" target='_blank' href='https://www.kpmp.org/mailing-list'><span className='nav-text px-1'>Join mailing list</span></NavLink>
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
