@@ -27,6 +27,8 @@ const getPageForGA = (currentPage) => {
       return "Repository"
     case "spatial-viewer":
       return "Spatial Viewer"
+    case "comparator":
+      return "Comparator"
     default:
       return "KPMP Atlas"
   }
@@ -104,6 +106,9 @@ class AtlasNavBar extends Component {
                 </NavItem>
                 <NavItem className={`${this.state.currentPage === 'spatial-viewer' ? 'active' : ''} px-1`}>
                   <NavLink href="/spatial-viewer"><span className="nav-text px-1">Spatial Viewer</span></NavLink>
+                </NavItem>
+                <NavItem className={`${this.state.currentPage === 'comparator' ? 'active' : ''} px-1`}>
+                  <NavLink href="/comparator"><span className="nav-text px-1">Comparator</span></NavLink>
                 </NavItem>
               </Nav><Nav>
             <NavItem className="nav-icon px-1 help-menu">
