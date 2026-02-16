@@ -107,9 +107,11 @@ class AtlasNavBar extends Component {
                 <NavItem className={`${this.state.currentPage === 'spatial-viewer' ? 'active' : ''} px-1`}>
                   <NavLink href="/spatial-viewer"><span className="nav-text px-1">Spatial Viewer</span></NavLink>
                 </NavItem>
-                <NavItem className={`${this.state.currentPage === 'comparator' ? 'active' : ''} px-1`}>
-                  <NavLink href="/comparator"><span className="nav-text px-1">Comparator</span></NavLink>
-                </NavItem>
+                { this.props.comparatorOn === "true" && 
+                  <NavItem className={`${this.state.currentPage === 'comparator' ? 'active' : ''} px-1`}>
+                    <NavLink href="/comparator"><span className="nav-text px-1">Comparator</span></NavLink>
+                  </NavItem>
+                }
               </Nav><Nav>
             <NavItem className="nav-icon px-1 help-menu">
               <Dropdown isOpen={this.state.dropdownOpen} toggle={this.dropdownToggle} direction='down' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
